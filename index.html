@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポキト通信｜海外ヤバ動画ニュースまとめ（サンプル）</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- 年齢確認ゲート -->
+<div id="agegate" hidden>
+  <div class="agegate-box">
+    <h1>ポキト通信</h1>
+    <p class="agegate-sub">このサイトは18禁（成人向け）コンテンツを含みます。</p>
+    <p>表示するには年齢を確認してください。</p>
+    <div class="agegate-btns">
+      <a href="#" id="age-ok" class="btn btn-red">私は18歳以上です（入る）</a>
+      <a href="https://www.google.com/" id="age-ng" class="btn btn-gray">18歳未満です（出る）</a>
+    </div>
+    <p class="agegate-note">※デモサイトです。実際の成人向け動画・画像は含まれません。</p>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html">ポキト<span>通信</span></a>
+    <p class="catch">海外でバズってる「やばい動画」を毎日まとめとるよｗｗｗ（※デモ）</p>
+  </div>
+  <nav class="main-nav">
+    <div class="wrap">
+      <a href="index.html" data-nav="all">ホーム</a>
+      <a href="index.html?cat=ero" data-nav="ero">エロ</a>
+      <a href="index.html?cat=guro" data-nav="guro">グロ</a>
+      <a href="index.html?cat=sfw" data-nav="sfw">SFW</a>
+      <a href="index.html?s=%E6%B5%81%E5%87%BA" data-nav="search">記事検索</a>
+    </div>
+  </nav>
+</header>
+
+<div class="wrap layout">
+  <main id="main">
+    <!-- ここに app.js が一覧 or 詳細を描画 -->
+  </main>
+  <aside id="sidebar">
+    <!-- ここに app.js がサイドバーを描画 -->
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-menu">
+      <a href="index.html">ホーム</a> ・
+      <a href="#" onclick="alert('デモです。免責事項ページを用意しましょう');return false;">免責事項</a> ・
+      <a href="index.html?taglist=1">タグ一覧</a> ・
+      <a href="#" onclick="alert('デモです。お問い合わせフォームを用意しましょう');return false;">お問い合わせ</a>
+    </p>
+    <p class="copy">©2026 ポキト通信（po-kaki-to.com 風プロトタイプ）</p>
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
