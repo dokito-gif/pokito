@@ -1,4 +1,4 @@
-/* 禁断通信 — app.js : 静的ページ内でクエリ文字列による擬似ルーティング */
+/* 激ヤバ通信 — app.js : 静的ページ内でクエリ文字列による擬似ルーティング */
 (function () {
   "use strict";
   var DATA = window.POKI;
@@ -61,7 +61,7 @@
   function shareRow(a) {
     var shareUrl = sharePageOf(a);
     var via = noPlaceholder(SITE.twitter) ? "&via=" + encodeURIComponent(SITE.twitter) : "";
-    var intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(a.title + " | " + (SITE.name || "禁断通信")) +
+    var intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(a.title + " | " + (SITE.name || "激ヤバ通信")) +
       "&url=" + encodeURIComponent(shareUrl) + via;
     return '<div class="share-row">' +
       '<a href="' + intent + '" target="_blank" rel="noopener">🐦 この記事をXで共有</a>' +
@@ -380,14 +380,14 @@
     markNav(q);
     if (a) {
       var root = noPlaceholder(SITE.url) ? String(SITE.url).replace(/\/+$/, "") : "";
-      document.title = a.title + "｜" + (SITE.name || "禁断通信");
+      document.title = a.title + "｜" + (SITE.name || "激ヤバ通信");
       setOG({
         "og:type": "article", "og:title": a.title, "og:description": a.excerpt,
         "og:url": sharePageOf(a), "og:image": (root ? root + "/assets/og-image.png" : "assets/og-image.png"),
         "twitter:card": "summary_large_image", "twitter:title": a.title, "twitter:description": a.excerpt
       });
     } else {
-      document.title = (q.cat || q.tag || q.s || q.taglist ? "" : "") + "禁断通信｜海外バズ動画ニュースまとめ";
+      document.title = (q.cat || q.tag || q.s || q.taglist ? "" : "") + "激ヤバ通信｜海外バズ動画ニュースまとめ";
     }
     injectAdScripts();
   }

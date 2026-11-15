@@ -70,7 +70,7 @@ fs.mkdirSync(shareDir, { recursive: true });
 const ogSize = makeOgPng(path.join(__dirname, "..", "assets", "og-image.png"));
 let n = 0;
 POKI.articles.forEach(a => {
-  const title = a.title + "｜" + (SITE.name || "禁断通信");
+  const title = a.title + "｜" + (SITE.name || "激ヤバ通信");
   const abs = root + "/share/" + a.id + ".html";
   const via = noPh(SITE.twitter) ? '<meta name="twitter:site" content="@' + esc(SITE.twitter) + '">' : "";
   const html = `<!DOCTYPE html>
@@ -81,7 +81,7 @@ POKI.articles.forEach(a => {
 <title>${esc(title)}</title>
 <meta http-equiv="refresh" content="0;url=../index.html?id=${a.id}">
 <link rel="canonical" href="${esc(abs)}">
-<meta property="og:site_name" content="${esc(SITE.name || "禁断通信")}">
+<meta property="og:site_name" content="${esc(SITE.name || "激ヤバ通信")}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(a.excerpt)}">

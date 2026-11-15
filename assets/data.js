@@ -1,11 +1,11 @@
-/* 禁断通信 — デモ記事データ（本家 po-kaki-to.com 風のふりしたダミー）
+/* 激ヤバ通信 — デモ記事データ（本家 po-kaki-to.com 風のふりしたダミー）
    node でも読めるように window/globalBoth 対応 */
 (typeof window !== "undefined" ? window : globalThis).POKI = {
 
   /* ===== 収益化・共有の設定（公開前にここを埋める） ===== */
   site: {
     url: "https://dokito-gif.github.io/pokito",  // 公開URL（Xシェア・OGPに使用）
-    name: "禁断通信",
+    name: "激ヤバ通信",
     twitter: "YOUR_X_ID",                     // Xアカウント（お決まりの投稿元）
     ads: {
       // 18禁対応広告ネットワーク。ExoClick等に登録したらIDを埋める。
