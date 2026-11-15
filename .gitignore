@@ -1,3 +1,7 @@
 .playwright-mcp/
 shot_*.png
 __pycache__/
+# サイト本体以外（このフォルダにあったスクリプト。GitHubには上げない）
+serve_wf.ps1
+upload_wf.ps1
+wait_render.ps1
