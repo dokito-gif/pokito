@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dokito-gif.github.io/pokito/sitemap.xml

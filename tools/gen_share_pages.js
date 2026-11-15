@@ -70,7 +70,7 @@ fs.mkdirSync(shareDir, { recursive: true });
 const ogSize = makeOgPng(path.join(__dirname, "..", "assets", "og-image.png"));
 let n = 0;
 POKI.articles.forEach(a => {
-  const title = a.title + "｜" + (SITE.name || "ポキト通信");
+  const title = a.title + "｜" + (SITE.name || "禁断通信");
   const abs = root + "/share/" + a.id + ".html";
   const via = noPh(SITE.twitter) ? '<meta name="twitter:site" content="@' + esc(SITE.twitter) + '">' : "";
   const html = `<!DOCTYPE html>
@@ -81,7 +81,7 @@ POKI.articles.forEach(a => {
 <title>${esc(title)}</title>
 <meta http-equiv="refresh" content="0;url=../index.html?id=${a.id}">
 <link rel="canonical" href="${esc(abs)}">
-<meta property="og:site_name" content="${esc(SITE.name || "ポキト通信")}">
+<meta property="og:site_name" content="${esc(SITE.name || "禁断通信")}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(a.excerpt)}">
@@ -102,4 +102,14 @@ ${via}
   n++;
 });
 console.log("生成完了: share/ に " + n + " ページ, og-image.png (" + ogSize + " bytes)");
+
+/* ---------- Google用に sitemap.xml と robots.txt も再生成 ---------- */
+const artUrls = POKI.articles.map(a => root + "/index.html?id=" + a.id);
+const allUrls = [root + "/", root + "/index.html?cat=ero", root + "/index.html?cat=guro", root + "/index.html?cat=sfw"].concat(artUrls);
+const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  allUrls.map(u => "  <url><loc>" + esc(u) + "</loc></url>").join("\n") + "\n</urlset>\n";
+fs.writeFileSync(path.join(__dirname, "..", "sitemap.xml"), xml, "utf8");
+fs.writeFileSync(path.join(__dirname, "..", "robots.txt"),
+  "User-agent: *\nAllow: /\n\nSitemap: " + root + "/sitemap.xml\n", "utf8");
+console.log("sitemap.xml / robots.txt も更新 (" + allUrls.length + " URL)");
 console.log("OGPのURLプレビュー: " + root + " （data.js の site.url を実際の公開URLに書き換えよう）");
