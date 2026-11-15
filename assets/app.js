@@ -99,6 +99,18 @@
     return '<a class="thumb' + (big ? " big" : "") + '" style="background:linear-gradient(135deg,' +
       a.color[0] + "," + a.color[1] + ')" href="index.html?id=' + a.id + '">' + inner + "</a>";
   }
+  /* ポッカキット式：カード幅の大きい画像（等倍基準・読み込み失敗時はグラデ+絵文字にフォールバック） */
+  function heroHTML(a) {
+    var inner;
+    if (a.img) {
+      inner = '<img class="heroimg" src="' + esc(a.img) + '" alt="" decoding="async" referrerpolicy="no-referrer" ' +
+        'onerror="this.parentNode.classList.add(\'hero--fb\');this.remove()">';
+    } else {
+      inner = '<span class="heroemoji">' + a.emoji + "</span>";
+    }
+    return '<a class="hero" style="background:linear-gradient(135deg,' + a.color[0] + "," + a.color[1] +
+      ')" href="index.html?id=' + a.id + '">' + inner + (a.img ? a.emoji : "") + "</a>";
+  }
   function catBadge(a) {
     return '<a class="cat-badge cat-' + a.cat + '" href="index.html?cat=' + a.cat + '">' +
       (CAT_NAME[a.cat] || a.cat) + "</a>";
@@ -163,13 +175,13 @@
         '<div class="post-date">' + esc(a.date) + "</div>" +
         '<h2 class="post-title"><a href="index.html?id=' + a.id + '">' + esc(a.title) + "</a></h2>" +
         '<div class="post-meta">' + catBadge(a) + "</div>" +
-        '<div class="post-body-wrap">' + thumbHTML(a, false) +
-        '<div><p class="excerpt">' + esc(a.excerpt) + "</p>" +
-        '<a class="read-more" href="index.html?id=' + a.id + '">続きを読む</a></div></div>' +
+        heroHTML(a) +
+        '<p class="excerpt">' + esc(a.excerpt) + "</p>" +
+        '<div class="entry-more"><a class="read-more" href="index.html?id=' + a.id + '">▶ この記事を読む</a></div>' +
         '<div class="post-foot">' +
-        '<span>💬 <a href="index.html?id=' + a.id + '#comments">Comment(' + commentCount(a) + ")</a></span>" +
+        '<span class="wait">コメント待ってます！</span>' +
+        '<span>💬 <a href="index.html?id=' + a.id + '#comments">Comment( ' + commentCount(a) + " )</a></span>" +
         '<span>👁 PV( ' + a.views.toLocaleString() + " )</span>" +
-        '<span>' + tagsInline(a) + "</span>" +
         "</div></article>";
       if (i === 2) html += adPh("rect", SITE.ads.exoclick.zoneid_rect, "レクタングル 300x250（3記事目の下）");
     });
@@ -222,7 +234,7 @@
       '<h1>' + esc(a.title) + "</h1>" +
       '<div class="post-date">' + esc(a.date) + " ／ " + catBadge(a) + " ／ 👁 PV( " + a.views.toLocaleString() + " )</div>" +
       '<p class="notice">※閲覧注意・流血・裸体要素あり。フル動画は外部公式サイトで再生されます。</p>' +
-      thumbHTML(a, true) +
+      heroHTML(a) +
       (a.video
         ? '<div class="video-ph"><span class="play">▶</span>動画はめ込み枠（YouTube埋め込み）<br><iframe width="640" height="360" style="max-width:100%;border:0" src="' + esc(a.video) + '" allowfullscreen loading="lazy"></iframe></div>'
         : a.src
