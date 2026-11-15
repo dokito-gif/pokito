@@ -91,6 +91,12 @@
   function sorted() {
     return DATA.articles.slice().sort(function (a, b) { return b.id - a.id; });
   }
+  /* TheYNCの公式埋め込みURL（/video/<id>/ → /embed/<id>）。iframe許可されてる header ゼロチェック済み */
+  function embedOf(a) {
+    if (a.embed) return a.embed;
+    var m = a.src && String(a.src).match(/theync\.com\/video\/(\d+)/);
+    return m ? "https://theync.com/embed/" + m[1] : "";
+  }
   /* 詳細ページ用：クリックでその場で再生するプレビュー枠（自前mp4） */
   function playHero(a) {
     var imgPart = a.img
@@ -263,15 +269,19 @@
       '<div class="breadcrumb"><a href="index.html">ホーム</a> &gt; <a href="index.html?cat=' + a.cat + '">' + (CAT_NAME[a.cat]) + "</a> &gt; 記事</div>" +
       '<h1>' + esc(a.title) + "</h1>" +
       '<div class="post-date">' + esc(a.date) + " ／ " + catBadge(a) + " ／ 👁 PV( " + a.views.toLocaleString() + " )</div>" +
-      '<p class="notice">※閲覧注意・流血・裸体要素あり。フル動画は外部公式サイトで再生されます。</p>' +
-      playHero(a) +
+      '<p class="notice">※閲覧注意・流血・裸体要素あり。' + (a.video || a.mp4 || embedOf(a) ? "動画はこのページで再生できます。" : "フル動画は外部公式サイトで再生されます。") + "</p>" +
       (a.video
         ? '<div class="video-ph"><span class="play">▶</span>動画はめ込み枠（YouTube埋め込み）<br><iframe width="640" height="360" style="max-width:100%;border:0" src="' + esc(a.video) + '" allowfullscreen loading="lazy"></iframe></div>'
-        : a.mp4
-          ? '<p class="src-note">▶ プレビュー画像タップでこの場で再生されるよ。元記事・高画質版は <a href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener">コチラ（' + esc(a.srcName || "公式サイト") + "・外部）</a></p>"
-          : a.src
-            ? '<a class="go-src" href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener"><span class="play">▶</span>フル動画はコチラで再生（' + esc(a.srcName || "公式サイト") + "）<br><small>外部リンク / 閲覧注意・18禁要素あり</small></a>"
-            : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>') +
+        : embedOf(a)
+          ? heroHTML(a) + '<div class="embed-box"><iframe src="' + esc(embedOf(a)) + '" title="動画プレイヤー" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe></div>' +
+            '<p class="src-note">▶ このページの動画は本家プレイヤーからそのまま再生しとるよ（転送量ゼロ）。元記事は <a href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener">コチラ（' + esc(a.srcName || "公式サイト") + '・外部）</a>' +
+            (a.mp4 ? '　再生されへん時は <a href="' + esc(a.mp4) + '">コチラのmp4</a>（保険用）' : "") + "</p>"
+          : playHero(a) +
+            (a.mp4
+              ? '<p class="src-note">▶ プレビュー画像タップでこの場で再生されるよ。</p>'
+              : a.src
+                ? '<a class="go-src" href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener"><span class="play">▶</span>フル動画はコチラで再生（' + esc(a.srcName || "公式サイト") + "）<br><small>外部リンク / 閲覧注意・18禁要素あり</small></a>"
+                : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>')) +
       a.body.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
       adPh("rect", SITE.ads.exoclick.zoneid_rect, "レクタングル 300x250（記事文中）") +
       buyCTA(a) +
