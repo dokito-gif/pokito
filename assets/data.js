@@ -1,5 +1,27 @@
-/* ポキト通信 — デモ記事データ（本家 po-kaki-to.com 風のふりしたダミー） */
-window.POKI = {
+/* ポキト通信 — デモ記事データ（本家 po-kaki-to.com 風のふりしたダミー）
+   node でも読めるように window/globalBoth 対応 */
+(typeof window !== "undefined" ? window : globalThis).POKI = {
+
+  /* ===== 収益化・共有の設定（公開前にここを埋める） ===== */
+  site: {
+    url: "https://YOUR-ID.github.io/pokito",  // 公開URL（Xシェア・OGPに使用）
+    name: "ポキト通信",
+    twitter: "YOUR_X_ID",                     // Xアカウント（お決まりの投稿元）
+    ads: {
+      // 18禁対応広告ネットワーク。ExoClick等に登録したらIDを埋める。
+      // 空文字のうちはプレースホルダーボックスを表示する
+      exoclick: { key: "", tagid: "", zoneid_leader: "", zoneid_rect: "", zoneid_side: "" },
+      // どのネットワークでもOKの「ベタ貼りHTML」枠（登録スニペットをそのまま貼れる）
+      headerRaw: "",   // ヘッダ直下に出す枠（728x90系）
+      footRaw: ""      // フッタ前に出す枠
+    },
+    fanza: {
+      // FANZA(DMM.R18)アフィリエイト。取得したクリックURLをここに
+      defaultUrl: "",  // 全記事でデフォルト表示する banner link（空なら表示しない）
+      affAppend: ""    // click URLに自動で足すパラメータ（例 "&af_id=xxxx"）が要る場合
+    }
+  },
+
   perPage: 6,
   articles: [
     {
@@ -15,6 +37,7 @@ window.POKI = {
         "※デモ記事です。動画ははめ込み用ダミーになります。"
       ],
       video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      buy: { label: "本編フルはFANZAで（PR）", url: "https://www.dmm.co.jp/mono/dvd/-/list/=/article=affiliate/" },
       comments: [
         { name: "名無しさん", date: "2026-11-15 09:12", text: "最後にグータッチで締めるのがアメリカｗｗｗ" },
         { name: "海外ウォッチャー", date: "2026-11-15 10:02", text: "コメント欄が全員「日本じゃ無理」って言ってて草" }
@@ -125,6 +148,7 @@ window.POKI = {
         "※デモ記事です。"
       ],
       video: "",
+      buy: { label: "関連作をFANZAで探す（PR）", url: "https://www.dmm.co.jp/mono/dvd/-/list/=/article=affiliate/" },
       comments: [
         { name: "ロリは正義", date: "2026-11-14 23:20", text: "合法なら文句ねぇんだよ（断言）" },
         { name: "文化相対主義者", date: "2026-11-15 00:15", text: "国ごとの基準差の話になると毎回燃える" },
@@ -220,6 +244,7 @@ window.POKI = {
         "※デモ記事です。"
       ],
       video: "",
+      buy: { label: "同系統的作品をFANZAで（PR）", url: "https://www.dmm.co.jp/mono/dvd/-/list/=/article=affiliate/" },
       comments: [
         { name: "湯治民", date: "2026-11-14 16:00", text: "見るなと言う方が無理な話" },
         { name: "名無しさん", date: "2026-11-14 17:10", text: "5.8万PV。男の関心事はいつの時代も変わらん" },

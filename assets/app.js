@@ -6,6 +6,71 @@
   var LS_AGE = "poki_age_ok_v1";
   var LS_COM = "poki_comments_";
 
+  /* ---- 収益化設定（data.js の site にフォールバック付き） ---- */
+  var SITE = DATA.site || {};
+  SITE.ads = SITE.ads || {};
+  SITE.ads.exoclick = SITE.ads.exoclick || {};
+  SITE.fanza = SITE.fanza || {};
+  var adSeq = 0;
+
+  function noPlaceholder(s) { return s && !/YOUR[-_]/.test(String(s)); }
+
+  /* 広告枠プレースホルダー。exoclick のIDが入っていれば後で実oadを注入する */
+  function adPh(kind, zoneid, label) {
+    var cls = "ad-ph" + (kind === "side" ? " vertical" : kind === "rect" ? " rect" : "");
+    var id = "ad-" + (++adSeq);
+    if (SITE.ads.exoclick.key && SITE.ads.exoclick.tagid && zoneid) {
+      return '<p class="ad-label">Sponsored</p><div class="' + cls + '" id="' + id + '" data-zone="' +
+        esc(zoneid) + '"></div>';
+    }
+    return '<p class="ad-label">Sponsored</p><div class="' + cls + '">広告枠: ' + esc(label) +
+      '<br><small>site.ads.exoclick にID記入 or rawスニペット対応</small></div>';
+  }
+
+  /* ExoClick系の非同期a.amsスクリプトを枠へ注入 */
+  function injectAdScripts() {
+    var XC = SITE.ads.exoclick;
+    if (!(XC.key && XC.tagid)) return;
+    document.querySelectorAll(".ad-ph[data-zone]").forEach(function (el) {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://region1.exoclick.com/a.ams?key=" + encodeURIComponent(XC.key) +
+        "&tagid=" + encodeURIComponent(XC.tagid) +
+        "&zoneid=" + encodeURIComponent(el.getAttribute("data-zone")) +
+        "&target=zone-in-" + el.id + "&it=7&v=2";
+      el.appendChild(s);
+    });
+  }
+
+  /* FANZAアフィリエイトCTA（記事 buy / サイト既定URLの順） */
+  function buyCTA(a) {
+    var buy = a.buy || (SITE.fanza.defaultUrl ? { label: "FANZAで18禁動画を探す（PR）", url: SITE.fanza.defaultUrl } : null);
+    if (!buy) return "";
+    var url = buy.url + (SITE.fanza.affAppend ? (buy.url.indexOf("?") === -1 ? "?" : "") + SITE.fanza.affAppend : "");
+    return '<a class="buy-cta" href="' + esc(url) + '" target="_blank" rel="nofollow sponsored noopener">' +
+      '<strong>▶ ' + esc(buy.label) + "</strong><small>FANZA(DMM.R18) アフィリエイト</small></a>" +
+      '<p class="buy-disclose">※スポンサー提供：このリンクからの購入で当サイトに紹介料が入ります</p>';
+  }
+
+  /* X（旧Twitter）シェア。共有ページ share/<id>.html があればOGP付きでカードが出る */
+  function sharePageOf(a) {
+    var base = noPlaceholder(SITE.url) ? String(SITE.url).replace(/\/+$/, "")
+      : location.href.split("?")[0].replace(/[^/]*$/, "");
+    return base + "/share/" + a.id + ".html";
+  }
+  function shareRow(a) {
+    var shareUrl = sharePageOf(a);
+    var via = noPlaceholder(SITE.twitter) ? "&via=" + encodeURIComponent(SITE.twitter) : "";
+    var intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(a.title + " | " + (SITE.name || "ポキト通信")) +
+      "&url=" + encodeURIComponent(shareUrl) + via;
+    return '<div class="share-row">' +
+      '<a href="' + intent + '" target="_blank" rel="noopener">🐦 この記事をXで共有</a>' +
+      '<button type="button" id="copylink">🔗 リンクコピー</button>' +
+      '<a href="' + intent + '" target="_blank" rel="noopener" title="bot投稿にも使えるURL">📣 bot用投稿URL</a>' +
+      "</div>";
+  }
+
+
   function qs() {
     var p = new URLSearchParams(location.search);
     return {
@@ -85,10 +150,11 @@
     var shown = items.slice((page - 1) * per, page * per);
 
     var html = '<div class="list-head">' + head + " <small>（" + items.length + "件 / " + page + "-" + total + "ページ）</small></div>";
+    html += adPh("leader", SITE.ads.exoclick.zoneid_leader, "リーダーボード 728x90（一覧上部）");
     if (!shown.length) {
       html += '<div class="post-card"><p>該当記事がありません。デモデータは' + DATA.articles.length + "本しか入ってませんｗｗ</p></div>";
     }
-    shown.forEach(function (a) {
+    shown.forEach(function (a, i) {
       html += '<article class="post-card">' +
         '<div class="post-date">' + esc(a.date) + "</div>" +
         '<h2 class="post-title"><a href="index.html?id=' + a.id + '">' + esc(a.title) + "</a></h2>" +
@@ -101,6 +167,7 @@
         '<span>👁 PV( ' + a.views.toLocaleString() + " )</span>" +
         '<span>' + tagsInline(a) + "</span>" +
         "</div></article>";
+      if (i === 2) html += adPh("rect", SITE.ads.exoclick.zoneid_rect, "レクタングル 300x250（3記事目の下）");
     });
     html += pagerHTML(page, total, q);
     main.innerHTML = html;
@@ -156,7 +223,10 @@
         ? '<div class="video-ph"><span class="play">▶</span>動画はめ込み枠（YouTube埋め込み）<br><iframe width="640" height="360" style="max-width:100%;border:0" src="' + esc(a.video) + '" allowfullscreen loading="lazy"></iframe></div>'
         : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>') +
       a.body.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
+      adPh("rect", SITE.ads.exoclick.zoneid_rect, "レクタングル 300x250（記事文中）") +
+      buyCTA(a) +
       '<div class="post-foot"><span>' + tagsInline(a) + "</span></div>" +
+      shareRow(a) +
       '<div class="pn">' +
       (prev ? '<a href="index.html?id=' + prev.id + '">&lt;&lt; ' + esc(prev.title.slice(0, 28)) + "…</a>" : "<span></span>") +
       (next ? '<a href="index.html?id=' + next.id + '">' + esc(next.title.slice(0, 28)) + "… &gt;&gt;</a>" : "<span></span>") +
@@ -180,6 +250,15 @@
       '<button type="submit" class="btn btn-red">送信する</button></form></section>';
 
     main.innerHTML = html;
+
+    var cp = document.getElementById("copylink");
+    if (cp) cp.addEventListener("click", function () {
+      var u = sharePageOf(a);
+      function done() { cp.textContent = "✅ コピーしたよ！"; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(u).then(done, function () { prompt("リンクをコピーしてね:", u); });
+      } else prompt("リンクをコピーしてね:", u);
+    });
 
     var form = document.getElementById("cform");
     form.addEventListener("submit", function (e) {
@@ -227,6 +306,14 @@
       '<input type="text" name="s" placeholder="記事検索 φ( _ _ )" value="' + esc(qs().s || "") + '">' +
       '<button type="submit">GO</button></form></div></div>';
 
+    html += adPh("side", SITE.ads.exoclick.zoneid_side, "スクレイパー 300x600（サイド）");
+
+    if (SITE.fanza.defaultUrl) {
+      var fu = SITE.fanza.defaultUrl + (SITE.fanza.affAppend ? (SITE.fanza.defaultUrl.indexOf("?") === -1 ? "?" : "") + SITE.fanza.affAppend : "");
+      html += '<div class="side-box fanza-side"><h3>■ PR（アフィリエイト）</h3>' +
+        '<a href="' + esc(fu) + '" target="_blank" rel="nofollow sponsored noopener">🔥 FANZA 18禁動画が見放題<br><small>オカズに困ったらここ（PR）</small></a></div>';
+    }
+
     html += '<div class="side-box"><h3>■ 最新記事</h3><div class="side-inner"><ul class="side-list">' +
       latest.map(function (a) {
         return '<li><a href="index.html?id=' + a.id + '">' + esc(a.title) + "</a></li>";
@@ -261,13 +348,29 @@
     });
   }
 
+  /* ---- OGPメタ（JS対応クローラー用。Xのbot向けには share/ 配下の静的ページを使う） ---- */
+  function setOG(map) {
+    Object.keys(map).forEach(function (k) {
+      var el = document.head.querySelector('meta[property="' + k + '"]') ||
+               document.head.querySelector('meta[name="' + k + '"]');
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(k.indexOf("og:") === 0 ? "property" : "name", k);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", map[k]);
+    });
+  }
+
   /* ---- 起動 ---- */
   function boot() {
     ageGate();
     var q = qs();
     var main = document.getElementById("main");
+    var a = null;
     if (q.id) {
-      renderArticle(main, parseInt(q.id, 10));
+      a = find(parseInt(q.id, 10));
+      renderArticle(main, a ? a.id : -1);
     } else if (q.taglist) {
       renderTagList(main);
     } else {
@@ -275,7 +378,18 @@
     }
     renderSidebar();
     markNav(q);
-    document.title = (q.id ? "記事詳細｜" : "") + "ポキト通信｜海外ヤバ動画ニュースまとめ（サンプル）";
+    if (a) {
+      var root = noPlaceholder(SITE.url) ? String(SITE.url).replace(/\/+$/, "") : "";
+      document.title = a.title + "｜" + (SITE.name || "ポキト通信");
+      setOG({
+        "og:type": "article", "og:title": a.title, "og:description": a.excerpt,
+        "og:url": sharePageOf(a), "og:image": (root ? root + "/assets/og-image.png" : "assets/og-image.png"),
+        "twitter:card": "summary_large_image", "twitter:title": a.title, "twitter:description": a.excerpt
+      });
+    } else {
+      document.title = (q.cat || q.tag || q.s || q.taglist ? "" : "") + "ポキト通信｜海外ヤバ動画ニュースまとめ（サンプル）";
+    }
+    injectAdScripts();
   }
   boot();
 })();

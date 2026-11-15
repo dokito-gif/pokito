@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ポキト通信｜海外ヤバ動画ニュースまとめ（サンプル）</title>
+<meta property="og:site_name" content="ポキト通信">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ポキト通信｜海外ヤバ動画ニュースまとめ">
+<meta property="og:description" content="海外でバズってる「やばい動画」を毎日まとめとるよｗｗｗ">
+<meta property="og:image" content="assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/data.js"></script>
 </head>
 <body>
 
@@ -38,6 +45,9 @@
   </nav>
 </header>
 
+<!-- 広告枠（ヘッダ直下・728x90系）。site.ads.headerRaw に登録スニペットを貼ると表示される -->
+<script>if(window.POKI&&POKI.site.ads.headerRaw){document.write('<div class="wrap"><div class="ad-ph">'+POKI.site.ads.headerRaw+'</div></div>');}</script>
+
 <div class="wrap layout">
   <main id="main">
     <!-- ここに app.js が一覧 or 詳細を描画 -->
@@ -46,6 +56,9 @@
     <!-- ここに app.js がサイドバーを描画 -->
   </aside>
 </div>
+
+<!-- 広告枠（フッタ前）。site.ads.footRaw にスニペットを貼ると表示される -->
+<script>if(window.POKI&&POKI.site.ads.footRaw){document.write('<div class="wrap"><div class="ad-ph">'+POKI.site.ads.footRaw+'</div></div>');}</script>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -59,7 +72,6 @@
   </div>
 </footer>
 
-<script src="assets/data.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>
