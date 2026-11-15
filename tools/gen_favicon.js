@@ -35,9 +35,9 @@ for (let y = 0; y < H; y++) {
     let r = 192, g = 57, b = 43;
     const t = y / (H - 1);
     r = Math.round(r + (123 - r) * t); g = Math.round(g + (31 - g) * t); b = Math.round(b + (162 - b) * t);
-    // 白い再生三角形：x が基準線から左、行ごとに幅が広がる
-    const inTri = x >= 10 && x <= 24 && x - 10 <= (H - 1 - Math.abs(y - 15.5) * 0 - 0) && (x - 10) <= (23 - Math.abs(y - 15.5) * 1.8) && y >= 6 && y <= 25;
-    const tri = y >= 6 && y <= 25 && x >= 10 && (x - 10) <= Math.round((25 - y + 6) * 0.78) && (y - 6) <= (x - 10) * 1.8 + 6 && (25 - y) <= (x - 10) * 1.8 + 6;
+    // 白い再生三角形：左辺 x=8、右の頂点 (26,15.5)、縦は中央から離れると短くなる
+    const dy = Math.abs(y + 0.5 - 15.5);
+    const tri = dy < 8 && x + 0.5 >= 8 && (x + 0.5 - 8) <= (8 - dy) * 2.25;
     if (tri) { r = 255; g = 255; b = 255; }
     px[i] = r; px[i + 1] = g; px[i + 2] = b; px[i + 3] = 255;
   }
