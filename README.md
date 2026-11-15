@@ -6,23 +6,31 @@
 ## 使い方
 - **開く**: `index.html` をブラウザで開く（またはこのフォルダごと任意の無料レンタルにアップ）
 - **年齢確認**: 初回は18禁ゲート表示。「18歳以上です」でブラウザに記憶される
-- **記事の追加**: `assets/data.js` の `articles` 配列に1件追記するだけ
+- **記事の追加**: `assets/data.js` の `articles` 配列の**一番上**に1件追記 → `node tools/gen_share_pages.js` → git push
+
+### 動画の3方式（詳細ページ、この優先順で自動選択）
+1. **公式埋め込み（本命・ダウンロード不要）**: `src` に TheYNC の記事URL（`https://theync.com/video/15102/...`）を入れると、自動で `https://theync.com/embed/15102` をiframeで差し込む。当サイトの帯域ゼロ。X-Frame-Optionsが無制限なことは実測確認済み
+2. **自前mp4（保険）**: `mp4: "videos/106.mp4"` を入れるとプレビュー画像タップでその場で再生。埋め込みが塞がれた時用に10本分は手元にある
+3. **YouTube埋め込み**: `video: "https://www.youtube.com/embed/ID"`
 
 ```js
 {
-  id: 106, cat: "ero",            // ero | guro | sfw の3カテゴリ
-  date: "2026-11-15 12:00",
-  title: "【記事タイトル】",
-  tags: ["海外", "流出"],          // タグは自動でクラウド・検索に反映
-  views: 1234,
-  emoji: "😳", color: ["#e91e63", "#9c27b0"],  // サムネ代わりの渐变+絵文字
-  excerpt: "一覧に出る抜粋",
-  body: ["本文段落1", "本文段落2"],
-  video: "https://www.youtube.com/embed/動画ID",  // 埋め込む動画。無ければ ""
-  buy: { label: "本編フルはFANZAで（PR）", url: "FANZAアフィリエイトのクリックURL" }, // 任意（省略可）
+  id: 116, cat: "guro",            // ero | guro | sfw の3カテゴリ
+  date: "2026-11-16 12:00",        // 数字が大きいほど新着扱い（idも降順）
+  title: "【閲覧注意】…（ここがSEOとXで勝敗を決める）",
+  tags: ["海外", "事故"],
+  views: 0,                        // PV表示用カウント。0でOK
+  img: "assets/img/116.jpg",       // プレビュー画像（TheYNCの preview.jpg をDLして assets/img/ へ）
+  mp4: "videos/116.mp4",           // 自前動画。埋め込みだけで良いなら "" でも可
+  emoji: "🤕", color: ["#c0392b", "#7b1fa2"],  // 画像が無い時のフォールバック
+  excerpt: "一覧に出るボールド抜粋（2〜3文）",
+  body: ["本文段落1", "本文段落2", "※出典: TheYNC / 元メディア"],
+  src: "https://theync.com/video/15xxx/slug/", srcName: "TheYNC",  // 出典リンク
+  buy: { label: "…（PR）", url: "FANZAのクリックURL" },            // 任意
   comments: [ { name: "名無しさん", date: "...", text: "..." } ]
 }
 ```
+**画像DLの手順**: TheYNCはcurl等だとCloudflare 403になる。ブラウザで開いて右クリック保存、またはブラウザ経由のfetch（referrerpolicy=no-referrer 相当）で取ってくる
 
 ## 実装済み機能
 - 一覧（新着順）＋ページネーション（6件/頁、`perPage` で変更可）

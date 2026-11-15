@@ -273,7 +273,7 @@
       (a.video
         ? '<div class="video-ph"><span class="play">▶</span>動画はめ込み枠（YouTube埋め込み）<br><iframe width="640" height="360" style="max-width:100%;border:0" src="' + esc(a.video) + '" allowfullscreen loading="lazy"></iframe></div>'
         : embedOf(a)
-          ? heroHTML(a) + '<div class="embed-box"><iframe src="' + esc(embedOf(a)) + '" title="動画プレイヤー" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe></div>' +
+          ? heroHTML(a) + '<div class="embed-box"><iframe src="' + esc(embedOf(a)) + '" title="動画プレイヤー" allow="autoplay; fullscreen" loading="lazy"></iframe></div>' +
             '<p class="src-note">▶ このページの動画は本家プレイヤーからそのまま再生しとるよ（転送量ゼロ）。元記事は <a href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener">コチラ（' + esc(a.srcName || "公式サイト") + '・外部）</a>' +
             (a.mp4 ? '　再生されへん時は <a href="' + esc(a.mp4) + '">コチラのmp4</a>（保険用）' : "") + "</p>"
           : playHero(a) +
