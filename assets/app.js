@@ -92,8 +92,12 @@
     return DATA.articles.slice().sort(function (a, b) { return b.id - a.id; });
   }
   function thumbHTML(a, big) {
+    var inner = a.img
+      ? '<img class="thumbimg" src="' + esc(a.img) + '" alt="" loading="lazy" referrerpolicy="no-referrer" ' +
+        'onerror="this.style.display=\'none\'">' + a.emoji
+      : a.emoji;
     return '<a class="thumb' + (big ? " big" : "") + '" style="background:linear-gradient(135deg,' +
-      a.color[0] + "," + a.color[1] + ')" href="index.html?id=' + a.id + '">' + a.emoji + "</a>";
+      a.color[0] + "," + a.color[1] + ')" href="index.html?id=' + a.id + '">' + inner + "</a>";
   }
   function catBadge(a) {
     return '<a class="cat-badge cat-' + a.cat + '" href="index.html?cat=' + a.cat + '">' +
@@ -152,7 +156,7 @@
     var html = '<div class="list-head">' + head + " <small>（" + items.length + "件 / " + page + "-" + total + "ページ）</small></div>";
     html += adPh("leader", SITE.ads.exoclick.zoneid_leader, "リーダーボード 728x90（一覧上部）");
     if (!shown.length) {
-      html += '<div class="post-card"><p>該当記事がありません。デモデータは' + DATA.articles.length + "本しか入ってませんｗｗ</p></div>";
+      html += '<div class="post-card"><p>該当記事がありませんｗｗ 別のカテゴリ・タグから探してくれ</p></div>';
     }
     shown.forEach(function (a, i) {
       html += '<article class="post-card">' +
@@ -217,11 +221,13 @@
       '<div class="breadcrumb"><a href="index.html">ホーム</a> &gt; <a href="index.html?cat=' + a.cat + '">' + (CAT_NAME[a.cat]) + "</a> &gt; 記事</div>" +
       '<h1>' + esc(a.title) + "</h1>" +
       '<div class="post-date">' + esc(a.date) + " ／ " + catBadge(a) + " ／ 👁 PV( " + a.views.toLocaleString() + " )</div>" +
-      '<p class="notice">※デモ記事です。実際の成人向け動画は含まれていません。</p>' +
+      '<p class="notice">※閲覧注意・流血・裸体要素あり。フル動画は外部公式サイトで再生されます。</p>' +
       thumbHTML(a, true) +
       (a.video
         ? '<div class="video-ph"><span class="play">▶</span>動画はめ込み枠（YouTube埋め込み）<br><iframe width="640" height="360" style="max-width:100%;border:0" src="' + esc(a.video) + '" allowfullscreen loading="lazy"></iframe></div>'
-        : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>') +
+        : a.src
+          ? '<a class="go-src" href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener"><span class="play">▶</span>フル動画はコチラで再生（' + esc(a.srcName || "公式サイト") + "）<br><small>外部リンク / 閲覧注意・18禁要素あり</small></a>"
+          : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>') +
       a.body.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
       adPh("rect", SITE.ads.exoclick.zoneid_rect, "レクタングル 300x250（記事文中）") +
       buyCTA(a) +

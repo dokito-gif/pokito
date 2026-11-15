@@ -86,7 +86,7 @@ POKI.articles.forEach(a => {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(a.excerpt)}">
 <meta property="og:url" content="${esc(abs)}">
-<meta property="og:image" content="${esc(root)}/assets/og-image.png">
+<meta property="og:image" content="${esc(a.img || root + "/assets/og-image.png")}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(a.excerpt)}">
