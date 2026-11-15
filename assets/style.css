@@ -207,7 +207,8 @@ a:hover { color: #d33; text-decoration: underline; }
 }
 .hero-clickable:hover .play-badge { background: #c0392b; border-color: #fff; }
 .hero-playing { background: #000 !important; }
-.hero-playing .heroimg { width: 100%; }
+/* 縦長動画でも画面からはみ出さんように高さ上限（横動画はそのまま横幅基準） */
+.hero-playing .heroimg { width: auto; max-width: 100%; max-height: 75vh; min-height: 240px; display: block; margin: 0 auto; }
 .hero .hero-tip {
   position: absolute; right: 8px; bottom: 6px; z-index: 2; font-size: 11px; font-weight: 700;
   background: rgba(0,0,0,.55); color: #fff; padding: 2px 9px; border-radius: 3px;
