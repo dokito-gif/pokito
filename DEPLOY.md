@@ -15,8 +15,10 @@
 1. 作成されたリポジトリページの **"uploading an existing file"** リンクをクリック
 2. このフォルダの中身をそのままドラッグ&ドロップ:
    - `index.html`
-   - `README.md`
-   - `assets/` フォルダごと（`style.css` `data.js` `app.js` が入ったもの。フォルダごとドロップすれば構造は維持される）
+   - `README.md` / `DEPLOY.md`
+   - `assets/` フォルダごと（`style.css` `data.js` `app.js` `og-image.png`）
+   - `share/` フォルダごと（Xシェア用のOGP静的ページ。無いとXでカードが出ない）
+   - ※ `tools/` はPC側で使うスクリプトなので上げなくても動く（上げても無害）
 3. 下の **Commit changes** を押す
 
 ## 3. PagesをONにする
@@ -34,7 +36,15 @@
 ## 5. 今後の記事追加（これもブラウザだけ）
 1. リポジトリで `assets/data.js` をクリック → 鉛筆アイコン（Edit）
 2. `articles: [` の直後にREADMEに載っているテンプレで1件追記して **Commit changes**
-3. 約1分でサイト全体に自動反映。タイトルを変えたら**idも連番で新規番号に**（id重複NG）
+3. 約1分でサイト全体に自動反映。**idは必ず新規の番号に**（id重複NG）
+4. 記事を追加したらPCで `node tools/gen_share_pages.js` を1回実行 → 増えた `share/` をブラウザで again ドラッグアップロード（Xに載せる予定のときだけ。不要ならこの4は飛ばしてOK、サイト自体はそのまま動く）
+
+## 5.5 収益化IDを入れる場所（任意）
+公開URLが決まったら `assets/data.js` の `site:` を編集して Commit:
+- `url`: `https://自分のID.github.io/pokito` に
+- `twitter`: 自分のX ID（@なし）
+- `ads.exoclick` 各項目: 広告ネットワーク登録後のID
+- `fanza.defaultUrl`: FANZAアフィリエイトのクリックURL
 
 ## うまく表示されないとき
 - 1分待ってから `Ctrl+F5`（Pagesの反映待ち・ブラウザキャッシュ）
