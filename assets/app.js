@@ -91,11 +91,14 @@
   function sorted() {
     return DATA.articles.slice().sort(function (a, b) { return b.id - a.id; });
   }
-  /* TheYNCの公式埋め込みURL（/video/<id>/ → /embed/<id>）。iframe許可されてる header ゼロチェック済み */
+  /* 公式埋め込みURLをsrcから自動生成。TheYNC(/video/<id>/)とEporner(/video-<ID>/)対応、両者XFO制限ゼロ実測済み */
   function embedOf(a) {
     if (a.embed) return a.embed;
-    var m = a.src && String(a.src).match(/theync\.com\/video\/(\d+)/);
-    return m ? "https://theync.com/embed/" + m[1] : "";
+    var s = a.src ? String(a.src) : "";
+    var m = s.match(/theync\.com\/video\/(\d+)/);
+    if (m) return "https://theync.com/embed/" + m[1];
+    var e = s.match(/eporner\.com\/video-([A-Za-z0-9]+)/);
+    return e ? "https://www.eporner.com/embed/" + e[1] + "/" : "";
   }
   /* 詳細ページ用：クリックでその場で再生するプレビュー枠（自前mp4） */
   function playHero(a) {
