@@ -4,7 +4,7 @@
 
   /* ===== 収益化・共有の設定（公開前にここを埋める） ===== */
   site: {
-    url: "https://YOUR-ID.github.io/pokito",  // 公開URL（Xシェア・OGPに使用）
+    url: "https://dokito-gif.github.io/pokito",  // 公開URL（Xシェア・OGPに使用）
     name: "ポキト通信",
     twitter: "YOUR_X_ID",                     // Xアカウント（お決まりの投稿元）
     ads: {
