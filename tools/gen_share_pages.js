@@ -72,6 +72,7 @@ let n = 0;
 POKI.articles.forEach(a => {
   const title = a.title + "｜" + (SITE.name || "激ヤバ通信");
   const abs = root + "/share/" + a.id + ".html";
+  const artOg = a.img ? (/^https?:/.test(a.img) ? a.img : root + "/" + String(a.img).replace(/^\//, "")) : root + "/assets/og-image.png";
   const via = noPh(SITE.twitter) ? '<meta name="twitter:site" content="@' + esc(SITE.twitter) + '">' : "";
   const html = `<!DOCTYPE html>
 <html lang="ja">
@@ -86,7 +87,7 @@ POKI.articles.forEach(a => {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(a.excerpt)}">
 <meta property="og:url" content="${esc(abs)}">
-<meta property="og:image" content="${esc(a.img || root + "/assets/og-image.png")}">
+<meta property="og:image" content="${esc(artOg)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(a.excerpt)}">

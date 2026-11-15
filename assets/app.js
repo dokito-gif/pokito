@@ -91,6 +91,36 @@
   function sorted() {
     return DATA.articles.slice().sort(function (a, b) { return b.id - a.id; });
   }
+  /* 詳細ページ用：クリックでその場で再生するプレビュー枠（自前mp4） */
+  function playHero(a) {
+    var imgPart = a.img
+      ? '<img class="heroimg" src="' + esc(a.img) + '" alt="" decoding="async" ' +
+        'onerror="this.parentNode.classList.add(\'hero--fb\');this.remove()">' + (a.mp4 ? "" : a.emoji)
+      : '<span class="heroemoji">' + a.emoji + "</span>";
+    var badge = a.mp4 ? '<span class="play-badge">▶</span>' : "";
+    return '<div class="hero hero-clickable" style="background:linear-gradient(135deg,' + a.color[0] + "," + a.color[1] +
+      ')" data-mp4="' + esc(a.mp4 || "") + '">' + imgPart + badge +
+      (a.mp4 ? "" : '<span class="hero-tip">タップで本家へ</span>') + "</div>";
+  }
+  function bindPlayHero(root) {
+    var h = root.querySelector(".hero-clickable");
+    if (!h || !h.getAttribute("data-mp4")) return;
+    h.addEventListener("click", function () {
+      if (h.dataset.played) return;
+      h.dataset.played = "1";
+      var v = document.createElement("video");
+      v.controls = true; v.autoplay = true; v.playsInline = true; v.muted = false;
+      v.className = "heroimg";
+      v.poster = (h.querySelector("img") && h.querySelector("img").src) || "";
+      v.src = h.getAttribute("data-mp4");
+      h.innerHTML = "";
+      h.classList.add("hero-playing");
+      h.appendChild(v);
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { v.muted = true; v.play(); });
+    }, false);
+  }
+
   function thumbHTML(a, big) {
     var inner = a.img
       ? '<img class="thumbimg" src="' + esc(a.img) + '" alt="" loading="lazy" referrerpolicy="no-referrer" ' +
@@ -234,12 +264,14 @@
       '<h1>' + esc(a.title) + "</h1>" +
       '<div class="post-date">' + esc(a.date) + " ／ " + catBadge(a) + " ／ 👁 PV( " + a.views.toLocaleString() + " )</div>" +
       '<p class="notice">※閲覧注意・流血・裸体要素あり。フル動画は外部公式サイトで再生されます。</p>' +
-      heroHTML(a) +
+      playHero(a) +
       (a.video
         ? '<div class="video-ph"><span class="play">▶</span>動画はめ込み枠（YouTube埋め込み）<br><iframe width="640" height="360" style="max-width:100%;border:0" src="' + esc(a.video) + '" allowfullscreen loading="lazy"></iframe></div>'
-        : a.src
-          ? '<a class="go-src" href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener"><span class="play">▶</span>フル動画はコチラで再生（' + esc(a.srcName || "公式サイト") + "）<br><small>外部リンク / 閲覧注意・18禁要素あり</small></a>"
-          : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>') +
+        : a.mp4
+          ? '<p class="src-note">▶ プレビュー画像タップでこの場で再生されるよ。元記事・高画質版は <a href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener">コチラ（' + esc(a.srcName || "公式サイト") + "・外部）</a></p>"
+          : a.src
+            ? '<a class="go-src" href="' + esc(a.src) + '" target="_blank" rel="nofollow noopener"><span class="play">▶</span>フル動画はコチラで再生（' + esc(a.srcName || "公式サイト") + "）<br><small>外部リンク / 閲覧注意・18禁要素あり</small></a>"
+            : '<div class="video-ph"><span class="play">▶</span>ここに関連動画がはまります<br><small>（運用時に動画URL or埋め込みコードを差し替え）</small></div>') +
       a.body.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
       adPh("rect", SITE.ads.exoclick.zoneid_rect, "レクタングル 300x250（記事文中）") +
       buyCTA(a) +
@@ -268,6 +300,7 @@
       '<button type="submit" class="btn btn-red">送信する</button></form></section>';
 
     main.innerHTML = html;
+    bindPlayHero(main);
 
     var cp = document.getElementById("copylink");
     if (cp) cp.addEventListener("click", function () {

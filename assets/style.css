@@ -197,3 +197,25 @@ a:hover { color: #d33; text-decoration: underline; }
 }
 .go-src small { display: block; font-weight: 400; color: rgba(255,255,255,.6); font-size: 11px; margin-top: 6px; }
 
+/* ===== タップでその場で再生（自前mp4） ===== */
+.hero-clickable { cursor: pointer; }
+.hero .play-badge {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 76px; height: 76px; line-height: 74px; border-radius: 50%; z-index: 2;
+  background: rgba(0,0,0,.55); border: 3px solid rgba(255,255,255,.85);
+  color: #fff; font-size: 30px; text-align: center; font-weight: 400;
+}
+.hero-clickable:hover .play-badge { background: #c0392b; border-color: #fff; }
+.hero-playing { background: #000 !important; }
+.hero-playing .heroimg { width: 100%; }
+.hero .hero-tip {
+  position: absolute; right: 8px; bottom: 6px; z-index: 2; font-size: 11px; font-weight: 700;
+  background: rgba(0,0,0,.55); color: #fff; padding: 2px 9px; border-radius: 3px;
+}
+.src-note {
+  text-align: center; font-size: 13px; font-weight: 700; margin: 12px 0;
+  background: #fdf3e7; border: 1px dashed #e67e22; border-radius: 4px; padding: 9px 10px;
+}
+.src-note a { color: #c0392b; }
+
+

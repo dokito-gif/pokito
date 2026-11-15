@@ -28,13 +28,13 @@
       id: 115, cat: "guro", date: "2026-11-16 08:00",
       title: "【閲覧注意】永遠の定番「ノコギリで死体分解」映像、初見じゃまともに見られんレベル…",
       tags: ["海外", "グロ", "死体", "定番"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15105/preview.jpg",
+      img: "assets/img/115.jpg", mp4: "videos/115.mp4",
       emoji: "🪚", color: ["#5d4037", "#3e2723"],
       excerpt: "TheYNCでCLASSIC（永遠の定番）扱いされてるノコギリ分解映像が再び上がってきた。荒すぎるのに淡々と作業が進むのが余計に怖い。心臓に自信あるやつだけ見ろ。",
       body: [
         "海外ゴア系で「まず最初に見せられる定番」といえばこのノコギリ分解もの。TheYNCでもCLASSICの札が付いてる超有名テイクや。",
         "淡々とノコギリを引く音と、それでも手元を止めない職人みたいな手つきが逆に生々しくて、初見だと本気で吐くレベル。コメントでも「CLASSICはCLASSICでも別格」と大騒ぎになってる。",
-        "※本編は外部（TheYNC）で再生。出典明記の元、ニュース記事としてまとめてます。"
+        "※当サイト自前で再生します。出典明記の元、ニュース記事としてまとめてます。"
       ],
       src: "https://theync.com/video/15105/butchery-with-a-saw/", srcName: "TheYNC",
       comments: [
@@ -46,13 +46,13 @@
       id: 114, cat: "guro", date: "2026-11-16 07:20",
       title: "【閲覧注意】ガソスタの女性店員が車にひかれて「虫みたいに固定」…そのまま走り去るドライバww",
       tags: ["海外", "ペルー", "事故", "ひき逃げ", "女性"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15104/preview.jpg",
+      img: "assets/img/114.jpg", mp4: "videos/114.mp4",
       emoji: "⛽", color: ["#00695c", "#1b5e20"],
       excerpt: "ペルーのガソリンスタンドで女性店員がバックする車にひかれて路面に固定された件。そのまま逃走しようとしたドライバの図が酷いと話題に。現地の報道では目撃者が取り押さえたっぽい。",
       body: [
         "ペルー・リマ近郊のガソスタで勤務中だった女性が、敷地内を移動していた車に跳ねられてそのまま下敷きに。「虫みたいに固定」と現地で叫ばれる衝撃の現場写真が一気に拡散した。",
         "運転手はその場から立ち去ろうとして、周囲の店員と客に囲まれて確保された模様。現地のtrome紙が動画付きで報道して、SNSでは怒りのコメントが殺到中。",
-        "※本編は外部（TheYNC）で再生。出典: trome.com（ペルー現地紙）"
+        "※当サイト自前で再生します。出典: trome.com（ペルー現地紙）"
       ],
       src: "https://theync.com/video/15104/female-gas-station-employee-gets-pinned-like-a-bug/", srcName: "TheYNC",
       comments: [
@@ -64,13 +64,13 @@
       id: 113, cat: "guro", date: "2026-11-16 06:40",
       title: "【グロ注意】首鎖を狙った19才のひったくり、相手が「元軍人の警官」でその場で即死…コロンビアの街の正義",
       tags: ["海外", "コロンビア", "犯罪", "銃", "犯人"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15102/preview.jpg",
+      img: "assets/img/113.jpg", mp4: "videos/113.mp4",
       emoji: "⛓️", color: ["#b71c1c", "#4a148c"],
       excerpt: "コロンビアで19歳のひったくり男が首のチェーンを奪おうとした相手が、なんと非番の警官（元軍人）。抵抗したらその場で撃たれて死亡。現地の有力紙も報じた「やり過ぎか正当防衛か」論争の映像。",
       body: [
         "ギラルドット市の路上で、バイクのひったくり二人組が通行人の首のチェーンを奪おうとした瞬間、被害者は発砲。うち1人の19歳がその場で死亡した。",
         "撃ったのは非番だった元軍人の警官と当局が発表。現地の最大紙El Tiempo（eltiempo.com）が動画付きで報道して、「街からは拍手」「やり過ぎだ」と賛否が真っ二つになってる。",
-        "※本編は外部（TheYNC）で再生。出典: eltiempo.com（コロンビア現地紙）"
+        "※当サイト自前で再生します。出典: eltiempo.com（コロンビア現地紙）"
       ],
       src: "https://theync.com/video/15102/19-year-old-chain-thief-shot-and-killed-by-off-duty-cop-in-colombia/", srcName: "TheYNC",
       comments: [
@@ -82,13 +82,13 @@
       id: 112, cat: "guro", date: "2026-11-16 06:00",
       title: "【閲覧注意】女性バイク運転手、バスとトラックの狭間で挟殺…「たった今大学を卒業したばかりだった」と現地で悼まれる",
       tags: ["海外", "コロンビア", "事故", "バイク", "女性"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15080/preview.jpg",
+      img: "assets/img/112.jpg", mp4: "videos/112.mp4",
       emoji: "🏍️", color: ["#6d4c41", "#263238"],
       excerpt: "コロンビアで女性ライダーがバスとトラックの間に挟まれて死亡。現地報道によると彼女はまだ大学を卒業したばかりの新卒。名前（wendy）まで知られてて、現地の悼み様が重すぎる。",
       body: [
         "走っていた大型2台に挟まれるという、バイク乗りにとって最悪のパターンで若い女性が亡くなった。その場の通行人が叫ぶ音声ごと撮影されて、スレで「見るな」と言われながらも拡散中。",
         "エル・ヌエボ・ディア紙（elnuevodia.com.co）が「彼女はWendy、UTを卒業したばかりだった」と人となりごと報道。事故の衝撃映像なのに、コメント欄が追悼の言葉で埋まる異様な状況になってる。",
-        "※本編は外部（TheYNC）で再生。出典: elnuevodia.com.co（コロンビア現地紙）"
+        "※当サイト自前で再生します。出典: elnuevodia.com.co（コロンビア現地紙）"
       ],
       src: "https://theync.com/video/15080/woman-on-motorcycle-crushed-between-bus-and-ttuck-dies/", srcName: "TheYNC",
       comments: [
@@ -100,13 +100,13 @@
       id: 111, cat: "guro", date: "2026-11-16 05:20",
       title: "【グロ注意】ロシアで元カレが女性に刺撃＋喉掻っ切り…「別れてほしい」の末路がショッキングすぎる",
       tags: ["海外", "ロシア", "犯罪", "事件", "女性"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15079/preview.jpg",
+      img: "assets/img/111.jpg", mp4: "videos/111.mp4",
       emoji: "🇷🇺", color: ["#37474f", "#212121"],
       excerpt: "サンクトペテルブルクで元恋人同士のトラブルが事件に。男性が女性を刺して喉を切った現場映像が流れてきて、海外スレで「ドストエフスキーかよ」と戦かれてる。男性は拘束済みとのこと。",
       body: [
         "ロシア現地メディア（mosmonitor.ru）が報じた通り、サンクトペテルブルクで男性が女性を刃物で襲った後、喉を切ったという衝撃の内容。現場の通行人が取り押さえて警察に引き渡した。",
         "海外ゴアスレでは「ロシアの別れ話はスケールが違う」と定番のネタ扱いされがちだが、被害者は一命を取り留めるか微妙な重体と見られてる模様。事件の経緯は捜査中。",
-        "※本編は外部（TheYNC）で再生。出典: mosmonitor.ru（ロシア現地メディア）"
+        "※当サイト自前で再生します。出典: mosmonitor.ru（ロシア現地メディア）"
       ],
       src: "https://theync.com/video/15079/woman-gets-stabbed-and-throat-slit-by-her-ex-in-russia/", srcName: "TheYNC",
       comments: [
@@ -118,13 +118,13 @@
       id: 110, cat: "guro", date: "2026-11-16 04:40",
       title: "【閲覧注意・生々しい】インドで女性2人が殺人＆木に吊るされる…村社会の闇が見えすぎる事件",
       tags: ["海外", "インド", "犯罪", "事件", "女性"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15074/preview.jpg",
+      img: "assets/img/110.jpg", mp4: "videos/110.mp4",
       emoji: "🌳", color: ["#33691e", "#1b5e20"],
       excerpt: "インドで女性2人が殺害された上で木に吊るされているのが発見された件。現地では「見せしめ」の色が濃いとして揉めてる。カーストと女性の問題が詰まりに詰まった地域での事件や。",
       body: [
         "朝、村の住民が木に吊るされた2人の女性を発見。検視で刺された形跡が出て殺人事件に切り替わった、というのが現地の流れ。",
         "インドでは同種の事件が「村の判断による見せしめ」だったケースが過去に何度もあって、今回のSNS反応も人権団体系が怒りまくり。現場映像はTheYNCに上がってるがかなり生々しい。",
-        "※本編は外部（TheYNC）で再生。"
+        "※当サイト自前で再生します（出典: TheYNC）。"
       ],
       src: "https://theync.com/video/15074/2-women-murdered-hung-from-tree/", srcName: "TheYNC",
       comments: [
@@ -136,13 +136,13 @@
       id: 109, cat: "guro", date: "2026-11-16 04:00",
       title: "【要覚悟】飼い主の女性が「自分のピットブル」に襲われて顔面メチャクチャ…救助する人たちが勇気ある",
       tags: ["海外", "ペルー", "動物", "事故", "女性"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15061/preview.jpg",
+      img: "assets/img/109.jpg", mp4: "videos/109.mp4",
       emoji: "🐕", color: ["#8d6e63", "#3e2723"],
       excerpt: "ペルーで女性が自分の飼い犬ピットブルに襲われて顔と首に重傷。離そうとしても離さない現場を、素手の通行人らが命懸けで引き剥がしてる。犬を飼う者として重すぎ動画。",
       body: [
         "散歩中か自宅前か、自分のピットブルがいきなり飼い主に喰いついた模様。首を離さない犬から女性を引き剥がそうと、若い男の3人が手当たり次第に引っ張って、1人腕に怪我までしてる。",
         "女性は顔面から血だらけで病院へ。海外のペット系スレでは「ピットブル規制は当然」と「飼い主の管理不足」の論争が恒例で毎回燃えてる。日本でも飼育規制ある犬種だけに人ごとちゃうで。",
-        "※本編は外部（TheYNC）で再生。"
+        "※当サイト自前で再生します（出典: TheYNC）。"
       ],
       src: "https://theync.com/video/15061/woman-attacked-by-her-own-pitbull-suffers-terrible-injury/", srcName: "TheYNC",
       comments: [
@@ -154,13 +154,13 @@
       id: 108, cat: "guro", date: "2026-11-16 03:20",
       title: "【グロ】依存症施設の管理人が寝てる間に「鉄の棒」で撲殺…CCTVに録画されてた犯人の淡々さが怖い",
       tags: ["海外", "インド", "犯罪", "殺人", "CCTV"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15057/preview.jpg",
+      img: "assets/img/108.jpg", mp4: "videos/108.mp4",
       emoji: "⛓️", color: ["#455a64", "#000000"],
       excerpt: "インドの社会復帰施設（デトックスセンター）で、寝ている管理人が犯人に鉄の棒で何度も殴り殺された件。CCTV映像の犯人の「淡々と殴る」テンポが不気味だと現地で話題に。",
       body: [
         "ムザファルプル地域の報道（bhaskar.com）によると、ナシャムクティケンドラ（依存症からの更生施設）の責任者が夜間に襲われて死亡。犯人は金的まで持参の計画的犯行とみられてる。",
         "防犯カメラには、寝ている場所まで歩いて来て、鉄の棒を振り下ろすまでの一連が全部映ってたらしい。殴る回数の多いこと多いこと。現地SNSでは「更生施設の内部抗争では」という見方も。",
-        "※本編は外部（TheYNC）で再生。出典: bhaskar.com（インド現地紙）"
+        "※当サイト自前で再生します。出典: bhaskar.com（インド現地紙）"
       ],
       src: "https://theync.com/video/15057/sleeping-rehab-manager-brutally-killed-with-iron-bar/", srcName: "TheYNC",
       comments: [
@@ -172,13 +172,13 @@
       id: 107, cat: "ero", date: "2026-11-16 02:40",
       title: "【半裸注意】ブラジルで全裸に近い若い女性がバスに轢かれて死亡…報道の仕方も映像もパンチが強すぎる",
       tags: ["海外", "ブラジル", "事故", "半裸", "交通事故"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15041/preview.jpg",
+      img: "assets/img/107.jpg", mp4: "videos/107.mp4",
       emoji: "🚌", color: ["#e91e63", "#6a1b9a"],
       excerpt: "ブラジルの幹線道路で上半身が露わな状態の若い女性がバスに轢かれて死亡。現場写真のインパクトがエロとグロの谷間すぎて、海外まとめ民の間で「今日の一枚」と呼ばれてる件。",
       body: [
         "BR-428号線（ペトロリーナ付近）で上半身が露わな状態の若い女性がバスに轢かれて死亡。現地メディアredevc.com.brが報じたところ、運転手は警察に自ら出頭したとされてる。",
         "現場の状況が「半裸＋派手な死亡事故」と海外ゴアまとめの大好物セットすぎて、TheYNCのタイトルも完全にぶっ飛んでる（Topless And Dead）。事故の詳細な経緯は調査中だが、服が破れていた状況から「事件性ある？」と現地スレはざわついてる。",
-        "※本編は外部（TheYNC）で再生。出典: redevc.com.br（ブラジル現地局）"
+        "※当サイト自前で再生します。出典: redevc.com.br（ブラジル現地局）"
       ],
       src: "https://theync.com/video/15041/topless-and-dead-young-woman-run-over-killed-by-bus-in-brazil/", srcName: "TheYNC",
       comments: [
@@ -190,13 +190,13 @@
       id: 106, cat: "guro", date: "2026-11-16 02:00",
       title: "【グロ注意】妻と娘の前で男が「真昼間に処刑」される現場…ブラジルの闇は深いすぎる",
       tags: ["海外", "ブラジル", "犯罪", "殺人", "見せしめ"], views: 0,
-      img: "https://theync.com/contents/videos_screenshots/15000/15037/preview.jpg",
+      img: "assets/img/106.jpg", mp4: "videos/106.mp4",
       emoji: "🌞", color: ["#4e342e", "#000000"],
       excerpt: "ブラジルで男性が妻と娘の見守る目の前、真昼間に撃たれて死亡。実行犯はそのまま立ち去るという堂々ぶり。ドラッグ関連の抗争にしては生々しさが段違いだと海外スレで騒ぎに騒いでる。",
       body: [
         "一家で外出中だったのか、男性は家族の目の前で待ち伏せに襲われて発砲された。救急が到着する前に事切れていて、妻と娘の号泣だけが音声に残ってる。",
         "TheYNCのコメント欄は「家族の前でやるか？」「つまり組織の内ゲバか」と推理合戦中。ブラジルの暗殺事例は武装集団の堂々とした動きが特徴的で、今回の映像もまさにそれ。",
-        "※本編は外部（TheYNC）で再生。"
+        "※当サイト自前で再生します（出典: TheYNC）。"
       ],
       src: "https://theync.com/video/15037/man-gets-executed-in-front-of-his-wife-and-daughter-in-broad-daylight/", srcName: "TheYNC",
       comments: [
