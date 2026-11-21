@@ -88,8 +88,13 @@
     for (var i = 0; i < DATA.articles.length; i++) if (DATA.articles[i].id === id) return DATA.articles[i];
     return null;
   }
+  /* 予約発布: publish（JST "YYYY-MM-DD HH:MM"）が現在時刻以降なら公開待ち扱い。publish無ければdateで判定 */
+  function pubOK(a) {
+    var p = a.publish || a.date;
+    return new Date(p.replace(" ", "T") + ":00+09:00") <= new Date();
+  }
   function sorted() {
-    return DATA.articles.slice().sort(function (a, b) { return b.id - a.id; });
+    return DATA.articles.filter(pubOK).slice().sort(function (a, b) { return b.id - a.id; });
   }
   /* 公式埋め込みURLをsrcから自動生成。TheYNC(/video/<id>/)とEporner(/video-<ID>/)対応、両者XFO制限ゼロ実測済み */
   function embedOf(a) {
@@ -355,7 +360,7 @@
   /* ---- サイドバー ---- */
   function tagCounts() {
     var c = {};
-    DATA.articles.forEach(function (a) { a.tags.forEach(function (t) { c[t] = (c[t] || 0) + 1; }); });
+    DATA.articles.filter(pubOK).forEach(function (a) { a.tags.forEach(function (t) { c[t] = (c[t] || 0) + 1; }); });
     return c;
   }
   function renderSidebar() {
